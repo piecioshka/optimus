@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 70px 0 0 0;
+}
+
+input {
+    width: 40px;
+    font-size: 20px;
+    padding: 3px;
+}
+
+.highlighted-cell input {
+    background: #a7e1fd;
+}
+
+table {
+    margin: 0 0 0 10px;
+}
+
+tr td:last-child,
+.add-row {
+    display: none;
+}
+
+tr td:nth-last-child(2) {
+    padding: 0 0 0 50px;
+    text-align: center;
+}
+
+tr td:nth-last-child(2) input {
+    background: white;
+    border: none;
+    color: white;
+}
+
+.super-highlighted-cell input {
+    background: #83a956 !important;
+}
+
+#query-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fa926a;
+    padding: 10px;
+}
+
+#query-block input {
+    padding: 5px;
+    font-size: 20px;
+    width: 500px;
+}
