@@ -1,8 +1,6 @@
 (async function () {
     'use strict';
 
-    const request = await fetch('data/blocks.json');
-    const BLOCKS = await request.json();
     const { SimpleDataTable } = require('simple-data-table');
 
     const $area = document.querySelector('#area');
