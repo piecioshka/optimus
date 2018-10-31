@@ -59,15 +59,14 @@
                 }
             })
             .sort((c1, c2) => {
-                if (c1.value > c2.value) {
+                if (c1.value < c2.value) {
                     return 1;
-                } else if (c1.value < c2.value) {
+                } else if (c1.value > c2.value) {
                     return -1;
                 } else {
                     return 0;
                 }
             })
-            .reverse()
             .filter((item, index, list) => {
                 return item.value === list[0].value;
             });
