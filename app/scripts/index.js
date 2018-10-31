@@ -1,6 +1,8 @@
 (async function () {
     'use strict';
 
+    require('./global-error-handler');
+
     const { SimpleDataTable } = require('simple-data-table');
 
     const $area = document.querySelector('#area');
@@ -85,5 +87,4 @@
 
         highlightRowsWidth(query);
     });
-
 })();
