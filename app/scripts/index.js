@@ -1,4 +1,14 @@
-(function () {
+(async function () {
+    'use strict';
+
+    const request = await fetch('data/blocks.json');
+    const BLOCKS = await request.json();
+    const { SimpleDataTable } = require('simple-data-table');
+
+    const $area = document.querySelector('#area');
+    const d = new SimpleDataTable($area);
+    d.load(BLOCKS);
+    d.render();
 
     const $query = document.querySelector('#query');
     const ENTER_KEY_CODE = 13;
@@ -10,9 +20,8 @@
     }
 
     function highlightRowsWidth(query) {
-        d.clearHighlightedCell();
+        d.clearHighlightedCells();
 
-        // clear last column
         new Array(d.getRowsCount())
             .fill(null)
             .forEach((undefined, rowIndex) => {
