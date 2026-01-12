@@ -1,23 +1,22 @@
 (async function () {
-    'use strict';
+    "use strict";
 
-    require('./global-error-handler');
+    require("./global-error-handler");
 
-    const { SimpleDataTable } = require('simple-data-table');
+    const { SimpleDataTable } = require("simple-data-table");
 
-    const $area = document.querySelector('#area');
+    const $area = document.querySelector("#area");
     const d = new SimpleDataTable($area);
     d.load(BLOCKS);
     d.render();
 
-    const $query = document.querySelector('#query');
-    const ENTER_KEY_CODE = 13;
+    const $query = document.querySelector("#query");
+
+    if ($query instanceof HTMLInputElement === false) {
+        return;
+    }
 
     $query.focus();
-
-    function isEnterKey(evt) {
-        return evt.keyCode === ENTER_KEY_CODE;
-    }
 
     function highlightRowsWidth(query) {
         d.clearHighlightedCells();
@@ -25,14 +24,14 @@
         new Array(d.getRowsCount())
             .fill(null)
             .forEach((undefined, rowIndex) => {
-                d.setInputCellContent(rowIndex, 10, '');
-            })
+                d.setInputCellContent(rowIndex, 10, "");
+            });
 
-        d.$el.querySelectorAll('.super-highlighted-cell').forEach(($super) => {
-            $super.classList.remove('super-highlighted-cell');
+        d.$el.querySelectorAll(".super-highlighted-cell").forEach(($super) => {
+            $super.classList.remove("super-highlighted-cell");
         });
 
-        const numbers = query.split(',').map(Number);
+        const numbers = query.split(",").map(Number);
         const cellIndexes = d.findCellsByContent(...numbers.map(String));
 
         cellIndexes.forEach(({ rowIndex, cellIndex }) => {
@@ -43,7 +42,7 @@
             if (mem[i.rowIndex] === undefined) {
                 mem[i.rowIndex] = 0;
             }
-            mem[i.rowIndex]++
+            mem[i.rowIndex]++;
             return mem;
         }, {});
 
@@ -55,8 +54,8 @@
             .map((resultsIndex) => {
                 return {
                     rowIndex: resultsIndex,
-                    value: results[resultsIndex]
-                }
+                    value: results[resultsIndex],
+                };
             })
             .sort((c1, c2) => {
                 if (c1.value < c2.value) {
@@ -73,17 +72,12 @@
 
         biggest.forEach((item) => {
             const $biggestCells = d.getCell(item.rowIndex, 10);
-            $biggestCells.classList.add('super-highlighted-cell');
+            $biggestCells.classList.add("super-highlighted-cell");
         });
     }
 
-    $query.addEventListener('keydown', (evt) => {
-        if (!isEnterKey(evt)) {
-            return;
-        }
-
+    $query.addEventListener("keyup", (evt) => {
         const query = $query.value;
-
         highlightRowsWidth(query);
     });
 })();

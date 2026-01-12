@@ -13,6 +13,9 @@ input {
     width: 40px;
     font-size: 20px;
     padding: 3px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
 }
 
 .highlighted-cell input {

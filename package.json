@@ -12,18 +12,27 @@
     "scripts": {
         "clear": "rm -rf dist/ coverage/",
         "clear:all": "rm -rf node_modules/ && npm run clear",
+        "dev": "webpack-dev-server --open",
         "watch": "webpack -w",
-        "build": "webpack -p"
+        "build": "webpack -p",
+        "start": "http-server -c-1 dist",
+        "deploy": "cross-env NODE_DEBUG=gh-pages gh-pages -d dist"
     },
     "dependencies": {
         "simple-data-table": "^1.1.0",
         "toastr": "^2.1.4"
     },
     "devDependencies": {
-        "style-loader": "^0.23.1",
+        "copy-webpack-plugin": "^6.4.1",
+        "cross-env": "^10.1.0",
         "css-loader": "^1.0.1",
+        "gh-pages": "^6.3.0",
+        "html-webpack-plugin": "^4.5.2",
+        "http-server": "^14.1.1",
+        "style-loader": "^0.23.1",
         "webpack": "^4.23.1",
-        "webpack-cli": "^3.1.2"
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.11.3"
     },
     "repository": {
         "type": "git",
